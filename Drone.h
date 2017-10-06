@@ -5,8 +5,6 @@
 #include <map>
 
 #include "Point.h"
-#include "Order.h"
-#include "Warehouse.h"
 
 enum DroneState { FREE, BUSY, ACCEPTED };
 
@@ -16,7 +14,7 @@ class Order;
 class Drone {
         public:
                 Drone(int id, Point starting_location, int capacity);
-
+/*
                 int getId() const;
                 Point getLocation() const;
                 int getCapacity() const;
@@ -45,5 +43,5 @@ class Drone {
                 DroneState m_state;
                 Order * m_accepted_order;
                 std::vector<std::pair<Warehouse*,std::vector<Product*>>> m_order_plan;
-                std::map<Order&,int> m_costs;
+                std::map<Order&,int> m_costs;*/
 };

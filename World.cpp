@@ -2,10 +2,9 @@
 
 #include "World.h"
 #include "Point.h"
-#include "Warehouse.h"
 
 World::World(int max_turns) : m_max_turns(max_turns), m_current_turn(0) {}
-
+/*
 void World::createDrones(int amount, int capacity) {
         Point startingLocation = m_warehouses.front().getLocation(); // If m_warehouses is empty, undefined.
 
@@ -14,7 +13,7 @@ void World::createDrones(int amount, int capacity) {
         for(int i = 0; i < amount; i++) {
                 m_drones.push_back(Drone(i,startingLocation,capacity));
         }
-}
+}*/
 
 void World::addWarehouse(int id, int x, int y, std::vector<int> stock) {
         Point point(x, y);
@@ -32,12 +31,12 @@ void World::createProducts(std::vector<int> weights) {
                 m_products.push_back(Product(i, weights[i]));
         }
 }
-
+/*
 void World::addOrder(Order order) {
         m_orders.push_back(order);
-}
+}*/
 
-std::size_t World::getMaxTurns() const { return m_max_turns; }
+int World::getMaxTurns() const { return m_max_turns; }
 
 
 void World::printWarehouses() {
@@ -57,7 +56,7 @@ void World::printProducts() {
 
 // TODO getters
 
-
+/*
 // Simulation
 void World::tick() {
         bool freeDrone = Drone::hasFree(getDrones());
@@ -105,5 +104,5 @@ void World::tick() {
         // End of turn
         ++m_current_turn;
 }
-
+*/
  
