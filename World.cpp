@@ -44,7 +44,7 @@ void World::tick() {
                 // Announce All open orders to all drones
                 for(auto it : getDrones()) {
                         // Drones are either BUSY (and ignore announce) or OFFER to their best order
-                        it.annouce(getOrders());
+                        it.announce(getOrders());
                 }
 
                 for(auto it : getOrders()) {
