@@ -1,6 +1,6 @@
 #pragma once
 
-#include <size_t>
+#include <vector>
 
 #include "Drone.h"
 #include "Warehouse.h"
@@ -9,19 +9,19 @@
 
 class World {
         public:
-                World(size_t max_turns);
+                World(std::size_t max_turns);
 
                 // Creation
-                void createDrones(size_t amount);
+                void createDrones(std::size_t amount);
 
                 void addWarehouse(Warehouse warehouse);
 
-                void createProducts(std::vector<size_t> weights);
+                void createProducts(std::vector<std::size_t> weights);
 
                 void addOrder(Order order);
 
                 // Getters
-                size_t getMaxTurns() const;
+                std::size_t getMaxTurns() const;
 
                 std::vector<Drone> & getDrones() const;
 
@@ -35,8 +35,8 @@ class World {
                 void tick();
 
         private:
-                size_t m_current_turn;
-                size_t m_max_turns;
+                std::size_t m_current_turn;
+                std::size_t m_max_turns;
                 std::vector<Drone> m_drones;
                 std::vector<Warehouse> m_warehouses;
                 std::vector<Product> m_products;
