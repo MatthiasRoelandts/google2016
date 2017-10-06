@@ -1,6 +1,6 @@
 #pragma once
 
-#include <size_t>
+#include <vector>
 
 #include "Drone.h"
 #include "Warehouse.h"
@@ -9,7 +9,7 @@
 
 class World {
         public:
-                World(size_t max_turns);
+                World(std::size_t max_turns);
 
                 // Creation
                 /**
@@ -21,7 +21,7 @@ class World {
                  * @param amount The total amount of drones to create.
                  * @param capacity The carry capacity of the drones.
                  */
-                void createDrones(size_t amount, size_t capacity);
+                void createDrones(std::size_t amount, std::size_t capacity);
 
                 /**
                  * Add a warehouse to the world.
@@ -33,7 +33,7 @@ class World {
                  * Creates weights.size() products. The weights vector should be ordered by product id. Each product of id "id" will have weight equal to weights[id].
                  * @param weights The ordered (by product id) of the different products.
                  */
-                void createProducts(std::vector<size_t> weights);
+                void createProducts(std::vector<std::size_t> weights);
 
                 /**
                  * Adds an order to the world.
@@ -42,7 +42,7 @@ class World {
                 void addOrder(Order order);
 
                 // Getters
-                size_t getMaxTurns() const;
+                std::size_t getMaxTurns() const;
 
                 // TODO return iterators instead of vector ref
                 std::vector<Drone> & getDrones() const;
@@ -57,8 +57,8 @@ class World {
                 void tick();
 
         private:
-                size_t m_current_turn;
-                size_t m_max_turns;
+                std::size_t m_current_turn;
+                std::size_t m_max_turns;
                 std::vector<Drone> m_drones;
                 std::vector<Warehouse> m_warehouses;
                 std::vector<Product> m_products;

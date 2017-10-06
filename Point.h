@@ -7,7 +7,7 @@ class Point {
 
                 int distance(Point other) const;
 
-                static int distance(Point first, Point other) const;
+                static int distance(Point first, Point other);
 
         private:
                 int m_x, m_y;
