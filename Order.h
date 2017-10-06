@@ -19,6 +19,7 @@ class Order {
                 // Order Processing
                 void makeOffer(Drone & drone, int cost);
                 void accept();
+                void reject();
                 
                 static bool hasOpen(std::vector<Order> & orders);
                 bool isClaimed() const;

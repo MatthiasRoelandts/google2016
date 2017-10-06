@@ -11,11 +11,12 @@ int Drone::getId() const { return m_id; }
 
 Point Drone::getLocation() const { return m_location; }
 
-std::size_t getCapacity() const { return m_capacity; }
+std::size_t Drone::getCapacity() const { return m_capacity; }
 
 // Simulation
-
-
+void tick() {
+        //TODO
+}
 
 // Order Processing
 void Drone::announce(std::vector<Order> &orders) {
@@ -27,16 +28,20 @@ void Drone::announce(std::vector<Order> &orders) {
         m_costs.clear();
         int min_cost = INT_MAX;
         int optimal_order_id = -1;
+        OrderPlan optimal_plan;
         // Loop over each order
         // If the order is not CLAIMED, keep track of personal cost to complete that order
         for(auto it : orders) {
                 if(it.isClaimed()) {
                         continue;
                 }
-                int cost = determineCost(it);
+                int cost;
+                OrderPlan plan;
+                std::tie(cost,plan) = determineCost(it);
                 if(cost < min_cost) {
                         min_cost = cost;
                         optimal_order_id = it.getId();
+                        optimal_plan = plan;
                 }
                 m_costs.insert({it,cost});
         }
@@ -45,6 +50,7 @@ void Drone::announce(std::vector<Order> &orders) {
         for(auto it : orders) {
                 if(it.getId() == optimal_order_id) {
                         it.makeOffer(*this, m_costs.at(it));
+                        m_order_plan = optimal_plan;
                         // Remove from cost map
                         m_costs.erase(it);
                         break;
@@ -71,7 +77,9 @@ void Drone::reannounce() {
         // Make offer to that order
         for(auto e : m_costs) {
                 if(e.first.getId() == optimal_order_id) {
+                        m_order_plan = determineCost(e.first).second;
                         e.first.makeOffer(*this, min_cost);
+                        
                         // Remove from cost map
                         m_costs.erase(e.first);
                         break;
@@ -80,16 +88,24 @@ void Drone::reannounce() {
 }
 
 void Drone::makeReservations() {
+        //TODO take weight into account
+        std::vector<std::pair<Warehouse*, Product>> history;
         // Loop over the plan
         for(auto e : m_order_plan) {
                 for(auto it : e.second) {
                         try {
                                 // At each warehouse, make reservations for its products
-                                e.first->reserveProduct(&it);
+                                e.first->reserveProduct(it);
+                                history.push_back(std::make_pair<Warehouse*,Product>(e.first,it));
                         } catch(OutOfStockException e) {
                         // If reservation fails, rollback previous reservations and cancel OFFER at order
-                        // TODO
+                        for(auto it : history) {
+                                it.first->addProduct(it.second);
                         }
+                        m_accepted_order->reject();
+                        m_accepted_order = nullptr;
+                        m_order_plan.clear();
+                        m_state = FREE;
                 }
         }
 }
@@ -125,4 +141,8 @@ bool Drone::hasFree(std::vector<Drone> &drones) {
                 }
         }
         return false;
+}
+
+std::pair<int,OrderPlan> determineCost(Order &order) {
+        // TODO
 }

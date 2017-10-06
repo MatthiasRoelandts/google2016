@@ -8,6 +8,8 @@
 
 enum DroneState { FREE, BUSY, ACCEPTED };
 
+typedef std::vector<std::pair<Warehouse*,std::vector<Product>>> OrderPlan;
+
 class Warehouse;
 class Order;
 
@@ -33,7 +35,7 @@ class Drone {
                 static bool hasFree(std::vector<Drone> &drones);
 
         private:
-                int determineCost(Order &order);
+                std::pair<int,OrderPlan> determineCost(Order &order);
 
                 int m_id;
                 Point m_location;
@@ -42,6 +44,6 @@ class Drone {
                 // State
                 DroneState m_state;
                 Order * m_accepted_order;
-                std::vector<std::pair<Warehouse*,std::vector<Product*>>> m_order_plan;
+                OrderPlan m_order_plan;
                 std::map<Order&,int> m_costs;
 };
