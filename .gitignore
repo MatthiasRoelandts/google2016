@@ -4,4 +4,5 @@
 # Compiled Stuff
 *.o
 *.a
+*.out
 

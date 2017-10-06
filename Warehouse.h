@@ -10,6 +10,8 @@ class Warehouse {
 
                 int getId() const;
 
+                Point getLocation() const;
+
                 void addProduct(Product product);
 
                 void reserveProduct(Product product);
