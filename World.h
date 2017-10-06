@@ -9,7 +9,7 @@
 
 class World {
         public:
-                World(std::size_t max_turns);
+                World(int max_turns);
 
                 // Creation
                 /**
@@ -21,28 +21,28 @@ class World {
                  * @param amount The total amount of drones to create.
                  * @param capacity The carry capacity of the drones.
                  */
-                void createDrones(std::size_t amount, std::size_t capacity);
+                void createDrones(int amount, int capacity);
 
                 /**
                  * Add a warehouse to the world.
                  * @param warehouse The warehouse to add.
                  */
-                void addWarehouse(Warehouse warehouse);
+                void addWarehouse(int id, int x, int y, std::vector<int> stock);
 
                 /**
                  * Creates weights.size() products. The weights vector should be ordered by product id. Each product of id "id" will have weight equal to weights[id].
                  * @param weights The ordered (by product id) of the different products.
                  */
-                void createProducts(std::vector<std::size_t> weights);
+                void createProducts(std::vector<int> weights);
 
                 /**
                  * Adds an order to the world.
                  * @param order The order to add.
                  */
-                void addOrder(Order order);
+                void addOrder(int id, int x, int y, std::vector<int> products);
 
                 // Getters
-                std::size_t getMaxTurns() const;
+                int getMaxTurns() const;
 
                 // TODO return iterators instead of vector ref
                 std::vector<Drone> & getDrones() const;
@@ -57,8 +57,8 @@ class World {
                 void tick();
 
         private:
-                std::size_t m_current_turn;
-                std::size_t m_max_turns;
+                int m_current_turn;
+                int m_max_turns;
                 std::vector<Drone> m_drones;
                 std::vector<Warehouse> m_warehouses;
                 std::vector<Product> m_products;
