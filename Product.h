@@ -1,15 +1,17 @@
 #pragma once
 
+#include <string>
 
 class Product {
         public:
-                Product(int id, size_t weight);
+                Product(int id, int weight);
 
                 int getId() const;
-                size_t getWeight() const;
-
+                int getWeight() const;
+                std::string toString();
+                bool operator<(const Product&) const;
         private:
                 int m_id;
-                size_t m_weight;
+                int m_weight;
 
 };

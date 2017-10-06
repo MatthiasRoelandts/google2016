@@ -5,6 +5,8 @@
 int main() {
     ParseInput parseInput;
     std::string theFile("inputfiles/simple.in");
-    parseInput.parseFile(theFile);
+    World * world = parseInput.parseFile(theFile);
+    world->printWarehouses();
+    //world->printProducts();
 }
 

@@ -8,7 +8,7 @@
 #include "ParseInput.h"
 #include "World.h"
 
-void ParseInput::parseFile(std::string new_file) {
+World* ParseInput::parseFile(std::string new_file) {
     std::ifstream theFile(new_file);
     if(theFile.is_open()) {
 
@@ -56,6 +56,7 @@ void ParseInput::parseFile(std::string new_file) {
     } else {
         std::cout << "could not open file \n";
     }
+    return m_world;
 }
 
 void ParseInput::parseWarehouse(int& id, std::string& firstLine, std::string& secLine) {
@@ -69,7 +70,7 @@ void ParseInput::parseWarehouse(int& id, std::string& firstLine, std::string& se
     for(auto i : words) {
         stock.push_back(atoi(i.c_str()));
     }
-    //world->createWarehouse(id, x, y, stock);
+    m_world->addWarehouse(id, x, y, stock);
 }
 
 void ParseInput::parseProducts(int& amount, std::string& line) {
@@ -79,7 +80,7 @@ void ParseInput::parseProducts(int& amount, std::string& line) {
     for(auto i : words) {
         weights.push_back(atoi(i.c_str()));
     }
-    //world->createProducts(weights);
+    m_world->createProducts(weights);
 }
 
 void ParseInput::parseOrder(int& id, std::string& first,  int& sec, std::string& third) {

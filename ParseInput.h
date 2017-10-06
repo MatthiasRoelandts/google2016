@@ -6,8 +6,9 @@
 
 class ParseInput {
     public:
-        ParseInput() {}
-        void parseFile(std::string);
+        ParseInput() { m_world = nullptr; }
+        World* parseFile(std::string);
+
     private:
         void parseWarehouse(int&, std::string&, std::string&);
         void parseProducts(int&, std::string&);
