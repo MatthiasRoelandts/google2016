@@ -12,17 +12,39 @@ class World {
                 World(size_t max_turns);
 
                 // Creation
-                void createDrones(size_t amount);
+                /**
+                 * Creates "amount" default initialised drones with carry capacity "capacity".
+                 * These drones spawn at the location of the first warehouse. This warehouse should have been added before creating the drones!
+                 *
+                 * @pre addWarehouse(..) is called at least once.
+                 * @post amount of drones are created
+                 * @param amount The total amount of drones to create.
+                 * @param capacity The carry capacity of the drones.
+                 */
+                void createDrones(size_t amount, size_t capacity);
 
+                /**
+                 * Add a warehouse to the world.
+                 * @param warehouse The warehouse to add.
+                 */
                 void addWarehouse(Warehouse warehouse);
 
+                /**
+                 * Creates weights.size() products. The weights vector should be ordered by product id. Each product of id "id" will have weight equal to weights[id].
+                 * @param weights The ordered (by product id) of the different products.
+                 */
                 void createProducts(std::vector<size_t> weights);
 
+                /**
+                 * Adds an order to the world.
+                 * @param order The order to add.
+                 */
                 void addOrder(Order order);
 
                 // Getters
                 size_t getMaxTurns() const;
 
+                // TODO return iterators instead of vector ref
                 std::vector<Drone> & getDrones() const;
 
                 std::vector<Warehouse> & getWarehouses() const;
