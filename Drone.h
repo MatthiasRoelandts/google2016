@@ -2,10 +2,14 @@
 
 //#include <size_t>
 #include <vector>
+#include <map>
 
 #include "Point.h"
 
 enum DroneState { FREE, BUSY, ACCEPTED };
+
+class Warehouse;
+class Order;
 
 class Drone {
         public:
@@ -20,17 +24,24 @@ class Drone {
 
                 // Order Processing
                 void announce(std::vector<Order> &orders);
-                void makeReservations(std::vector<Warehouse> &warehouses);
-                void accept(Order & order);
+                void reannounce();
+                void makeReservations();
+                void accept(Order * order);
+                void cancel();
 
                 static bool hasUnaccepted(std::vector<Drone> &drones);
                 static bool hasFree(std::vector<Drone> &drones);
 
         private:
+                int determineCost(Order &order);
+
                 int m_id;
                 Point m_location;
                 std::size_t m_capacity;
 
                 // State
                 DroneState m_state;
+                Order * m_accepted_order;
+                std::vector<std::pair<Warehouse*,std::vector<Product*>>> m_order_plan;
+                std::map<Order&,int> m_costs;
 };

@@ -41,8 +41,10 @@ void Order::accept() {
         // Get correct reference
         for(auto e : m_offers) {
                 if(e.first.getId() == optimal_drone_id) {
+                        // If already Accepted an offer, cancel Accept
+                        m_accepted_drone->cancel();
                         // Accept Offer
-                        e.first.accept(*this);
+                        e.first.accept(this);
                         break;
                 }
         }
@@ -55,6 +57,10 @@ static bool Order::hasOpen(std::vector<Order> &orders) {
                 }
         }
         return false;
+}
+
+bool Order::isClaimed() const {
+        return m_state == CLAIMED;
 }
 
 

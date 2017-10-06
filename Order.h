@@ -21,6 +21,7 @@ class Order {
                 void accept();
                 
                 static bool hasOpen(std::vector<Order> & orders);
+                bool isClaimed() const;
 
         private:
                 int m_id;
@@ -29,5 +30,6 @@ class Order {
 
                 // State
                 OrderState m_state;
+                Drone * m_accepted_drone;
                 std::map<Drone &, int> m_offers;
 };
