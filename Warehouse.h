@@ -27,6 +27,8 @@ class Warehouse {
 
                 void reserveProduct(Product product);
 
+                int getItemCount(Product product);
+
         private:
                 int m_id;
                 Point m_location;
