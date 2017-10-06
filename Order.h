@@ -21,6 +21,7 @@ class Order {
                 void accept();
                 
                 static bool hasOpen(std::vector<Order> & orders);
+                bool isClaimed() const;
 
         private:
                 int m_id;
@@ -31,4 +32,5 @@ class Order {
                 OrderState m_state;
                 std::map<Drone*, int> m_offers;
                 // TODO maybe retrun to Drone&
+                Drone * m_accepted_drone;
 };

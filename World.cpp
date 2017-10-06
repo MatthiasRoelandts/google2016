@@ -81,7 +81,7 @@ void World::tick() {
                 while(unacceptedDrone) {
                         // If this OFFER is better for the order than current ACCEPT, RELEASE drone
                         for(auto it : getDrones()) {
-                                it.announce(getOrders());
+                                it.reannounce();
                         }
                         for(auto it : getOrders()) {
                                 it.accept();
@@ -92,7 +92,7 @@ void World::tick() {
                 // TODO would be optimal if drones would be iterated over with the lowest achievable cost going first...
                 // If a reserve fails (another drone beat them to it), then rollback previous reservations for that drone and cancel OFFER for its ORDER.
                 for(auto it : getDrones()) {
-                        it.makeReservations(getWarehouses());
+                        it.makeReservations();
                 }
         }
                                 
