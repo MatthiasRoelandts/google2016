@@ -5,8 +5,6 @@
 #include <map>
 
 #include "Point.h"
-#include "Order.h"
-#include "Warehouse.h"
 
 enum DroneState { FREE, BUSY, ACCEPTED };
 
