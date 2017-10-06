@@ -1,0 +1,7 @@
+# VIM stuff
+*.swp
+
+# Compiled Stuff
+*.o
+*.a
+
