@@ -1,6 +1,11 @@
 #pragma once
 
+#include <size_t>
 
+#include "Drone.h"
+#include "Warehouse.h"
+#include "Product.h"
+#include "Order.h"
 
 class World {
         public:
@@ -26,7 +31,11 @@ class World {
 
                 std::vector<Order> & getOrders() const; 
 
+                // Simulation
+                void tick();
+
         private:
+                size_t m_current_turn;
                 size_t m_max_turns;
                 std::vector<Drone> m_drones;
                 std::vector<Warehouse> m_warehouses;

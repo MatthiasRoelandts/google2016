@@ -1,5 +1,7 @@
 #pragma once
 
+#include <size_t>
+
 #include "Point.h"
 
 class Drone {
@@ -13,5 +15,5 @@ class Drone {
         private:
                 int m_id;
                 Point m_location;
-                size_t capacity;
+                size_t m_capacity;
 };
