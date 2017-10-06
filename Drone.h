@@ -5,6 +5,8 @@
 #include <map>
 
 #include "Point.h"
+#include "Order.h"
+#include "Warehouse.h"
 
 enum DroneState { FREE, BUSY, ACCEPTED };
 
@@ -15,11 +17,11 @@ class Order;
 
 class Drone {
         public:
-                Drone(int id, Point starting_location, std::size_t capacity);
+                Drone(int id, Point starting_location, int capacity);
 
                 int getId() const;
                 Point getLocation() const;
-                std::size_t getCapacity() const;
+                int getCapacity() const;
 
                 // Simulation
                 void tick();
@@ -39,7 +41,7 @@ class Drone {
 
                 int m_id;
                 Point m_location;
-                std::size_t m_capacity;
+                int m_capacity;
 
                 // State
                 DroneState m_state;

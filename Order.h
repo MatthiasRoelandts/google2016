@@ -31,6 +31,7 @@ class Order {
 
                 // State
                 OrderState m_state;
+                std::map<Drone*, int> m_offers;
+                // TODO maybe retrun to Drone&
                 Drone * m_accepted_drone;
-                std::map<Drone &, int> m_offers;
 };

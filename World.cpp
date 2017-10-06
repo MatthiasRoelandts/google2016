@@ -1,10 +1,12 @@
-
+#include <iostream>
 
 #include "World.h"
+#include "Point.h"
+#include "Warehouse.h"
 
 World::World(int max_turns) : m_max_turns(max_turns), m_current_turn(0) {}
 
-void World::createDrones(std::size_t amount, std::size_t capacity) {
+void World::createDrones(int amount, int capacity) {
         Point startingLocation = m_warehouses.front().getLocation(); // If m_warehouses is empty, undefined.
 
         m_drones.reserve(amount);
@@ -14,11 +16,17 @@ void World::createDrones(std::size_t amount, std::size_t capacity) {
         }
 }
 
-void World::addWarehouse(Warehouse warehouse) {
-        m_warehouses.push_back(warehouse);
+void World::addWarehouse(int id, int x, int y, std::vector<int> stock) {
+        Point point(x, y);
+        std::map<Product, int> productStock;
+        for(int i = 0; i < stock.size(); i++) {
+                productStock.insert(std::pair<Product, int> (m_products[i], stock[i]));
+        }
+        Warehouse wh(id, point, productStock);
+        m_warehouses.push_back(wh);
 }
 
-void World::createProducts(std::vector<std::size_t> weights) {
+void World::createProducts(std::vector<int> weights) {
         m_products.reserve(weights.size());
         for(int i = 0; i < weights.size(); i++) {
                 m_products.push_back(Product(i, weights[i]));
@@ -30,6 +38,22 @@ void World::addOrder(Order order) {
 }
 
 std::size_t World::getMaxTurns() const { return m_max_turns; }
+
+
+void World::printWarehouses() {
+        std::cout << "===Warehouses===\n";
+        for(auto i : m_warehouses) {
+                std::cout << i.toString() << "\n";
+        }
+}
+
+void World::printProducts() {
+        std::cout << "=== Products ===\n";
+        for(auto i : m_products) {
+                std::cout << i.toString() << "\n";
+        }
+}
+
 
 // TODO getters
 

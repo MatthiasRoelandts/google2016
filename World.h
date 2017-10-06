@@ -53,6 +53,12 @@ class World {
 
                 std::vector<Order> & getOrders() const; 
 
+                //print testing
+                void printDrones();
+                void printWarehouses();
+                void printProducts();
+                void printOrders();
+
                 // Simulation
                 void tick();
 
@@ -64,3 +70,4 @@ class World {
                 std::vector<Product> m_products;
                 std::vector<Order> m_orders;
 };
+
