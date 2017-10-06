@@ -18,7 +18,12 @@ void Warehouse::addProduct(Product product) {
 
 void Warehouse::reserveProduct(Product product) {
         try {
-                m_stock.at(product) -= 1;
+                int & stock = m_stock.at(product);
+                if(stock == 0) {
+                        throw OutOfStockException(product.getId(), getId());
+                } else {
+                        m_stock.at(product) -= 1;
+                }
         } catch(std::out_of_range & e) {
                 std::cerr << "Cannot Reserve item " << product.getId() << " in Warehouse " << m_id << '\n';
                 throw;

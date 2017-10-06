@@ -1,5 +1,8 @@
 #pragma once
 
+#include "OutputParser.h"
+
+class World;
 
 class Simulator {
         public:
@@ -9,5 +12,5 @@ class Simulator {
 
         private:
                 World & m_world;
-                OutputParser output;
+                OutputParser m_output;
 };

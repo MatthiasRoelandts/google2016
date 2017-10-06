@@ -1,5 +1,6 @@
 #pragma once
 
+enum OrderState { OPEN, OFFERED, CLAIMED };
 
 class Order {
         public:
@@ -9,8 +10,17 @@ class Order {
                 Point getLocation() const;
                 std::vector<Product> getItems() const;
 
+                // Order Processing
+                void makeOffer(Drone & drone, int cost);
+                void accept();
+                
+                static bool hasOpen(std::vector<Order> & orders);
+
         private:
                 int m_id;
                 Point m_location;
                 std::vector<Product> m_items;
+
+                // State
+                OrderState m_state;
 };
