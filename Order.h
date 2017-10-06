@@ -1,8 +1,10 @@
 #pragma once
 
 #include <map>
+#include <vector>
 
 #include "Product.h"
+#include "Point.h"
 
 enum OrderState { OPEN, OFFERED, CLAIMED };
 
@@ -19,7 +21,7 @@ class Order {
                 bool operator<(const Order&) const;
 
                 // Order Processing
-                void makeOffer(Drone & drone, int cost);
+                void makeOffer(Drone * drone, int cost);
                 void accept();
                 void reject();
                 

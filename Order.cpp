@@ -17,7 +17,7 @@ bool Order::operator<(const Order &other) const {
 }
 
 // Order Processing
-void Order::makeOffer(Drone & drone, int cost) {
+void Order::makeOffer(Drone * drone, int cost) {
         // A CLAIMED order cannot be made an offer
         if(m_state == CLAIMED) {
                 // TODO throw fitting exception
@@ -39,22 +39,22 @@ void Order::accept() {
 
         for(auto e : m_offers) {
                 if(e.second < min_cost) {
-                        optimal_drone_id = e.first.getId();
+                        optimal_drone_id = e.first->getId();
                 }
         }
         // Get correct reference
         for(auto e : m_offers) {
-                if(e.first.getId() == optimal_drone_id) {
+                if(e.first->getId() == optimal_drone_id) {
                         // If already Accepted an offer, cancel Accept
                         m_accepted_drone->cancel();
                         // Accept Offer
-                        e.first.accept(this);
+                        e.first->accept(this);
                         break;
                 }
         }
 }
 
-static bool Order::hasOpen(std::vector<Order> &orders) {
+bool Order::hasOpen(std::vector<Order> &orders) {
         for(auto it : orders) {
                 if(it.m_state == OPEN) {
                         return true;

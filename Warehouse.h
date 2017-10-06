@@ -5,7 +5,7 @@
 
 #include "Product.h"
 #include "Point.h"
-/*
+
 class OutOfStockException : public std::exception {
         public: 
                 OutOfStockException(int item_id, int warehouse_id) : m_item_id(item_id), m_warehouse_id(warehouse_id) {}
@@ -16,7 +16,7 @@ class OutOfStockException : public std::exception {
 
         private:
                 int m_item_id, m_warehouse_id;
-};*/
+};
 
 class Warehouse {
         public:
