@@ -14,11 +14,11 @@ class Order;
 class Drone {
         public:
                 Drone(int id, Point starting_location, int capacity);
-/*
+
                 int getId() const;
                 Point getLocation() const;
                 int getCapacity() const;
-
+/*
                 // Simulation
                 void tick();
 
@@ -31,6 +31,7 @@ class Drone {
 
                 static bool hasUnaccepted(std::vector<Drone> &drones);
                 static bool hasFree(std::vector<Drone> &drones);
+*/
 
         private:
                 int determineCost(Order &order);
@@ -38,10 +39,11 @@ class Drone {
                 int m_id;
                 Point m_location;
                 int m_capacity;
-
+/*
                 // State
                 DroneState m_state;
                 Order * m_accepted_order;
                 std::vector<std::pair<Warehouse*,std::vector<Product*>>> m_order_plan;
-                std::map<Order&,int> m_costs;*/
+                std::map<Order&,int> m_costs;
+*/
 };
