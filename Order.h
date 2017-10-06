@@ -16,6 +16,8 @@ class Order {
                 Point getLocation() const;
                 std::vector<Product> getItems() const;
 
+                bool operator<(const Order&) const;
+
                 // Order Processing
                 void makeOffer(Drone & drone, int cost);
                 void accept();

@@ -12,6 +12,10 @@
 
 
 
+bool Order::operator<(const Order &other) const {
+        return m_id < other.getId();
+}
+
 // Order Processing
 void Order::makeOffer(Drone & drone, int cost) {
         // A CLAIMED order cannot be made an offer
