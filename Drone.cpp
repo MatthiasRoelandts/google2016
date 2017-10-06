@@ -5,14 +5,15 @@
 #include "Warehouse.h"
 #include "Order.h"
 
-Drone::Drone(int id, Point starting_location, size_t capacity) : m_id(id), m_location(starting_location), m_capacity(capacity) {}
+Drone::Drone(int id, Point starting_location, int capacity) : m_id(id), m_location(starting_location), m_capacity(capacity) {}
 
 int Drone::getId() const { return m_id; }
 
 Point Drone::getLocation() const { return m_location; }
 
-std::size_t Drone::getCapacity() const { return m_capacity; }
+int Drone::getCapacity() const { return m_capacity; }
 
+/*
 // Simulation
 void tick() {
         //TODO
@@ -146,3 +147,4 @@ bool Drone::hasFree(std::vector<Drone> &drones) {
 std::pair<int,OrderPlan> determineCost(Order &order) {
         // TODO
 }
+*/

@@ -5,13 +5,14 @@
 #include <map>
 
 #include "Point.h"
+#include "Product.h"
 
 enum DroneState { FREE, BUSY, ACCEPTED };
 
-typedef std::vector<std::pair<Warehouse*,std::vector<Product>>> OrderPlan;
-
 class Warehouse;
 class Order;
+
+typedef std::vector<std::pair<Warehouse*,std::vector<Product>>> OrderPlan;
 
 class Drone {
         public:
@@ -20,7 +21,7 @@ class Drone {
                 int getId() const;
                 Point getLocation() const;
                 int getCapacity() const;
-
+/*
                 // Simulation
                 void tick();
 
@@ -33,17 +34,19 @@ class Drone {
 
                 static bool hasUnaccepted(std::vector<Drone> &drones);
                 static bool hasFree(std::vector<Drone> &drones);
+*/
 
         private:
-                std::pair<int,OrderPlan> determineCost(Order &order);
+                //std::pair<int,OrderPlan> determineCost(Order &order);
 
                 int m_id;
                 Point m_location;
                 int m_capacity;
-
+/*
                 // State
                 DroneState m_state;
                 Order * m_accepted_order;
                 OrderPlan m_order_plan;
                 std::map<Order&,int> m_costs;
+*/
 };
