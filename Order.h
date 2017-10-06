@@ -1,6 +1,12 @@
 #pragma once
 
+#include <map>
+
+#include "Product.h"
+
 enum OrderState { OPEN, OFFERED, CLAIMED };
+
+class Drone;
 
 class Order {
         public:
@@ -23,4 +29,5 @@ class Order {
 
                 // State
                 OrderState m_state;
+                std::map<Drone &, int> m_offers;
 };

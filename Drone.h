@@ -21,6 +21,7 @@ class Drone {
                 // Order Processing
                 void announce(std::vector<Order> &orders);
                 void makeReservations(std::vector<Warehouse> &warehouses);
+                void accept(Order & order);
 
                 static bool hasUnaccepted(std::vector<Drone> &drones);
                 static bool hasFree(std::vector<Drone> &drones);
